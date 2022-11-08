@@ -17,6 +17,7 @@ $body = "This HTTP triggered function executed successfully. Pass a name in the 
 Write-Verbose "MSI_SECRET:$($env:MSI_SECRET)"
 if ($name) {
     $Context = Get-AzContext
+    Write-Output $Context
     $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.SubscriptionName), TenantID: $($Context.TenantID) "
     
 }
