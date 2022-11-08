@@ -16,7 +16,9 @@ $body = "This HTTP triggered function executed successfully. Pass a name in the 
 
 Write-Verbose "MSI_SECRET:$($env:MSI_SECRET)"
 if ($name) {
-    $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET)"
+    $Context = Get-AzContext
+    $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.SubscriptionName), TenantID: $($Context.TenantID) "
+    
 }
 
 # Associate values to output bindings by calling 'Push-OutputBinding'.
