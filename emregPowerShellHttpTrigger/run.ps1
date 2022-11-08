@@ -18,7 +18,7 @@ Write-Verbose "MSI_SECRET:$($env:MSI_SECRET)"
 if ($name) {
     $Context = Get-AzContext
     Write-Host $Context
-    $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.SubscriptionName), TenantID: $($Context.TenantID) "
+    $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.Subscription.Name), TenantID: $($Context.Tenant.Id) "
     
 }
 
