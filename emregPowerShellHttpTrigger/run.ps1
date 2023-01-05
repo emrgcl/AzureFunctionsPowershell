@@ -21,7 +21,7 @@ if ($name) {
     $body = "Hello, $name. This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.Subscription.Name), TenantID: $($Context.Tenant.Id) "
     
 }
-
+Start-Sleep -Milliseconds (get-random -Minimum 100 -Maximum 2000)
 # Associate values to output bindings by calling 'Push-OutputBinding'.
 Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
     StatusCode = [HttpStatusCode]::OK
