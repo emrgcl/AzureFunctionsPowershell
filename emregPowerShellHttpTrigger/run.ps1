@@ -18,7 +18,15 @@ Write-Verbose "MSI_SECRET:$($env:MSI_SECRET)"
 if ($name) {
     $Context = Get-AzContext
     Write-Host $Context
-    $body = "Hello, $name. Sleep Ms= '$SleepMilliseconds' This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.Subscription.Name), TenantID: $($Context.Tenant.Id) "
+    $JsonContext = [pscustomObject]@{
+        Name = $name
+        SleepMs= $SleepMilliseconds
+        MSI_SECRET=$env:MSI_SECRET
+        Subscription = $Context.Subscription.Name
+        TenantID = $Context.Tenant.Id
+    }
+    $Body = $JsonContext | ConvertTo-Json
+    # $body = "Hello, $name. Sleep Ms= '$SleepMilliseconds' This HTTP triggered function executed successfully. MSI_SECRET:$($env:MSI_SECRET), Subcription: $($Context.Subscription.Name), TenantID: $($Context.Tenant.Id) "
     
 }
 Start-Sleep -Milliseconds $SleepMilliseconds
